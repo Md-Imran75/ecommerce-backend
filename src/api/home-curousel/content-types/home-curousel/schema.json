@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_curousels",
+  "info": {
+    "singularName": "home-curousel",
+    "pluralName": "home-curousels",
+    "displayName": "Home Curousel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
