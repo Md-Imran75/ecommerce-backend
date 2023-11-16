@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * size service
+ * brand service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::size.size');
+module.exports = createCoreService('api::brand.brand');

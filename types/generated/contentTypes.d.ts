@@ -678,12 +678,50 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrandBrand extends Schema.CollectionType {
+  collectionName: 'brands';
+  info: {
+    singularName: 'brand';
+    pluralName: 'brands';
+    displayName: 'brand';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::brand.brand', 'name'> & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    categories: Attribute.Relation<
+      'api::brand.brand',
+      'oneToMany',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'category';
+    displayName: 'model';
     description: '';
   };
   options: {
@@ -697,6 +735,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::category.category',
       'manyToMany',
       'api::product.product'
+    >;
+    brand: Attribute.Relation<
+      'api::category.category',
+      'manyToOne',
+      'api::brand.brand'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -830,11 +873,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       }>;
     image: Attribute.Media & Attribute.Required;
     slug: Attribute.UID<'api::product.product', 'title'> & Attribute.Required;
-    color: Attribute.Enumeration<
-      ['red', 'green', 'yellow', 'white', 'black', 'pink']
-    >;
     price: Attribute.Decimal & Attribute.Required;
-    availableQTY: Attribute.Integer;
     categories: Attribute.Relation<
       'api::product.product',
       'manyToMany',
@@ -842,12 +881,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     description: Attribute.RichText & Attribute.Required;
     thumbnail: Attribute.Media;
-    orginalPrice: Attribute.Decimal;
-    sizes: Attribute.Relation<
-      'api::product.product',
-      'manyToMany',
-      'api::size.size'
-    >;
+    brand: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -862,34 +896,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSizeSize extends Schema.CollectionType {
-  collectionName: 'sizes';
-  info: {
-    singularName: 'size';
-    pluralName: 'sizes';
-    displayName: 'size';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    products: Attribute.Relation<
-      'api::size.size',
-      'manyToMany',
-      'api::product.product'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -910,12 +916,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::home-curousel.home-curousel': ApiHomeCurouselHomeCurousel;
       'api::logo.logo': ApiLogoLogo;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
-      'api::size.size': ApiSizeSize;
     }
   }
 }

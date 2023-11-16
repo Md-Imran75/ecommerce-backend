@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "brands",
   "info": {
-    "singularName": "category",
-    "pluralName": "categories",
-    "displayName": "model",
+    "singularName": "brand",
+    "pluralName": "brands",
+    "displayName": "brand",
     "description": ""
   },
   "options": {
@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -23,7 +24,7 @@
     "image": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -31,17 +32,11 @@
         "audios"
       ]
     },
-    "products": {
+    "categories": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "inversedBy": "categories"
-    },
-    "brand": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::brand.brand",
-      "inversedBy": "categories"
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "brand"
     }
   }
 }

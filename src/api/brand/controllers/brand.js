@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * size controller
+ * brand controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::size.size');
+module.exports = createCoreController('api::brand.brand');

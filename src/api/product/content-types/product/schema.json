@@ -31,24 +31,9 @@
       "required": true,
       "targetField": "title"
     },
-    "color": {
-      "type": "enumeration",
-      "enum": [
-        "red",
-        "green",
-        "yellow",
-        "white",
-        "black",
-        "pink"
-      ]
-    },
     "price": {
       "type": "decimal",
       "required": true
-    },
-    "availableQTY": {
-      "type": "integer",
-      "required": false
     },
     "categories": {
       "type": "relation",
@@ -71,14 +56,8 @@
         "audios"
       ]
     },
-    "orginalPrice": {
-      "type": "decimal"
-    },
-    "sizes": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::size.size",
-      "mappedBy": "products"
+    "brand": {
+      "type": "string"
     }
   }
 }
