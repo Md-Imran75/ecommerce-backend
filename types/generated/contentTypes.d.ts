@@ -874,14 +874,14 @@ export interface ApiProductProduct extends Schema.CollectionType {
     image: Attribute.Media & Attribute.Required;
     slug: Attribute.UID<'api::product.product', 'title'> & Attribute.Required;
     price: Attribute.Decimal & Attribute.Required;
+    description: Attribute.RichText & Attribute.Required;
+    thumbnail: Attribute.Media;
+    brand: Attribute.String;
     categories: Attribute.Relation<
       'api::product.product',
       'manyToMany',
       'api::category.category'
     >;
-    description: Attribute.RichText & Attribute.Required;
-    thumbnail: Attribute.Media;
-    brand: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

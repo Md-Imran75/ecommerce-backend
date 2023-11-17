@@ -35,12 +35,6 @@
       "type": "decimal",
       "required": true
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "products"
-    },
     "description": {
       "type": "richtext",
       "required": true
@@ -58,6 +52,12 @@
     },
     "brand": {
       "type": "string"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "products"
     }
   }
 }
