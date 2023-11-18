@@ -58,6 +58,34 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "sellerId": {
+      "type": "string",
+      "required": false
+    },
+    "regYear": {
+      "type": "biginteger"
+    },
+    "abs": {
+      "type": "string"
+    },
+    "cc": {
+      "type": "biginteger"
+    },
+    "fl": {
+      "type": "string"
+    },
+    "taxValid": {
+      "type": "string"
+    },
+    "mileAge": {
+      "type": "string"
+    },
+    "kMeter": {
+      "type": "biginteger"
+    },
+    "condition": {
+      "type": "string"
     }
   }
 }
